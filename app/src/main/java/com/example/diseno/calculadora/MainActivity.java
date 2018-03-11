@@ -1,5 +1,6 @@
 package com.example.diseno.calculadora;
 
+import android.annotation.SuppressLint;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -9,6 +10,7 @@ public class MainActivity extends AppCompatActivity {
     public EditText info;
     public double primero, segundo, inforesult;
     int operacion;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -83,39 +85,36 @@ public class MainActivity extends AppCompatActivity {
         info.setText(captura);
     }
 
-    public void primerNum(int view){
-        try{
-            String contadorA = info.getText().toString();
-            primero = Double.parseDouble(contadorA);
-        }catch(NumberFormatException nfe){};
+    public void primerNum() throws NumberFormatException {
+        String contadorA = info.getText().toString();
+        primero = Double.parseDouble(contadorA);
         info.setText("");
     }
 
     public void suma(View view){
-        primerNum(0);
+        primerNum();
         operacion=0;
     }
 
     public void resta(View view){
-        primerNum(0);
+        primerNum();
         operacion=1;
     }
 
     public void multiplica(View view){
-        primerNum(0);
+        primerNum();
         operacion=2;
     }
 
     public void dividir(View view){
-        primerNum(0);
+        primerNum();
         operacion=3;
     }
 
-    public void igual (View view){
-        try{
-            String contadorB = info.getText().toString();
-            segundo = Double.parseDouble(contadorB);
-        }catch(NumberFormatException nfe){};
+    @SuppressLint("SetTextI18n")
+    public void igual (View view) throws NumberFormatException {
+        String contadorB = info.getText().toString();
+        segundo = Double.parseDouble(contadorB);
         info.setText("");
 
         switch (operacion){
@@ -147,7 +146,7 @@ public class MainActivity extends AppCompatActivity {
         primero=inforesult;
     }
 
-    public void ac (View v){
+    public void ac (View view){
         info.setText("");
         primero=0.0;
         segundo=0.0;
